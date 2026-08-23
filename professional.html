@@ -1,0 +1,984 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aengus White | Data Engineer & ML Engineer</title>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z97KHHB83S"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-Z97KHHB83S');
+    </script>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --dark: #0f0f0f;
+            --darker: #1a1a1a;
+            --accent: #a855f7;
+            --light: #1f1f1f;
+            --text: #e0e0e0;
+            --text-light: #b0b0b0;
+            --border: #333333;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', 'Arial', sans-serif;
+            color: var(--text);
+            line-height: 1.7;
+            overflow-x: hidden;
+            background: #0f0f0f;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: #1a1a1a;
+            padding: 25px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            border-bottom: 1px solid var(--border);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: 300;
+            letter-spacing: 2px;
+            color: var(--text);
+        }
+
+        .logo strong {
+            font-weight: 600;
+            color: var(--accent);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 50px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #b0b0b0;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 400;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: #0f0f0f;
+            padding: 140px 60px 120px;
+            margin-top: 70px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .profile-image {
+            width: 220px;
+            height: 220px;
+            border-radius: 4px;
+            object-fit: cover;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            margin-bottom: 50px;
+            animation: fadeInDown 0.8s ease;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-size: 56px;
+            font-weight: 300;
+            margin-bottom: 15px;
+            letter-spacing: -1px;
+            color: var(--text);
+        }
+
+        .hero h1 strong {
+            font-weight: 600;
+            color: var(--accent);
+        }
+
+        .hero .subtitle {
+            font-size: 22px;
+            color: var(--accent);
+            margin-bottom: 10px;
+            font-weight: 300;
+        }
+
+        .hero .location {
+            font-size: 14px;
+            color: var(--text-light);
+            margin-bottom: 25px;
+            letter-spacing: 1px;
+        }
+
+        .hero .description {
+            font-size: 16px;
+            color: var(--text-light);
+            max-width: 750px;
+            margin-bottom: 40px;
+            line-height: 1.9;
+        }
+
+        .contact-info {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            margin-bottom: 40px;
+            font-size: 14px;
+            flex-wrap: wrap;
+        }
+
+        .contact-info a {
+            color: var(--accent);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .contact-info a:hover {
+            color: var(--dark);
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 25px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 14px 40px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 13px;
+            transition: all 0.3s;
+            border: 1px solid transparent;
+            cursor: pointer;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: white;
+            border: 1px solid var(--accent);
+        }
+
+        .btn-primary:hover {
+            background: transparent;
+            color: var(--accent);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #b0b0b0;
+            border: 1px solid #b0b0b0;
+        }
+
+        .btn-secondary:hover {
+            background: #b0b0b0;
+            color: #0f0f0f;
+        }
+
+        /* Sections */
+        section {
+            padding: 100px 60px;
+            background: #0f0f0f;
+        }
+
+        section.alternate {
+            background: #1a1a1a;
+        }
+
+        section h2 {
+            font-size: 42px;
+            margin-bottom: 20px;
+            font-weight: 300;
+            letter-spacing: -1px;
+            color: var(--text);
+        }
+
+        section h2 strong {
+            font-weight: 600;
+            color: var(--accent);
+        }
+
+        .section-subtitle {
+            font-size: 14px;
+            color: var(--text-light);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 50px;
+            display: block;
+        }
+
+        .section-divider {
+            width: 50px;
+            height: 2px;
+            background: var(--accent);
+            margin-bottom: 40px;
+        }
+
+        /* Summary Section */
+        .summary-text {
+            max-width: 1000px;
+            margin: 0 auto;
+            font-size: 15px;
+            color: var(--text-light);
+            line-height: 1.9;
+        }
+
+        /* Experience Section */
+        .experience-item {
+            max-width: 1000px;
+            margin: 0 auto 16px;
+        }
+
+        .experience-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .experience-pill {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+
+            padding: 18px 28px;
+
+            background: var(--light);
+            border: 1px solid var(--border);
+            border-radius: 999px;
+
+            cursor: pointer;
+            list-style: none;
+
+            transition: border-color 0.3s, border-radius 0.3s;
+        }
+
+        .experience-pill::-webkit-details-marker {
+            display: none;
+        }
+
+        .experience-pill::marker {
+            content: "";
+        }
+
+        .experience-pill:hover {
+            border-color: var(--accent);
+        }
+
+        .experience-item[open] .experience-pill {
+            border-color: var(--accent);
+            border-radius: 24px 24px 0 0;
+        }
+
+        .experience-pill-main {
+            display: flex;
+            align-items: baseline;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+
+        .experience-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        .experience-year {
+            font-size: 13px;
+            color: var(--accent);
+            font-weight: 600;
+            letter-spacing: 1px;
+            white-space: nowrap;
+        }
+
+        .experience-caret {
+            flex-shrink: 0;
+
+            font-size: 12px;
+            color: var(--text-light);
+
+            transition: transform 0.3s ease;
+        }
+
+        .experience-item[open] .experience-caret {
+            transform: rotate(180deg);
+        }
+
+        .experience-details {
+            padding: 24px 28px 28px;
+
+            background: var(--darker);
+            border: 1px solid var(--border);
+            border-top: none;
+            border-radius: 0 0 24px 24px;
+        }
+
+        .experience-company {
+            font-size: 14px;
+            color: var(--text-light);
+            margin-bottom: 15px;
+        }
+
+        .experience-bullets {
+            list-style: none;
+            padding-left: 20px;
+        }
+
+        .experience-bullets li {
+            font-size: 14px;
+            color: var(--text-light);
+            margin-bottom: 12px;
+            line-height: 1.8;
+            position: relative;
+            padding-left: 15px;
+        }
+
+        .experience-bullets li:before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: bold;
+        }
+
+        .experience-subhead {
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            color: var(--text);
+            margin: 22px 0 10px;
+        }
+
+        .experience-subhead:first-child {
+            margin-top: 0;
+        }
+
+        .specifics-toggle {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border);
+        }
+
+        .specifics-toggle summary {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+
+            cursor: pointer;
+            list-style: none;
+
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--accent);
+        }
+
+        .specifics-toggle summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .specifics-toggle summary::marker {
+            content: "";
+        }
+
+        .specifics-caret {
+            font-size: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .specifics-toggle[open] .specifics-caret {
+            transform: rotate(180deg);
+        }
+
+        .specifics-toggle .experience-bullets {
+            margin-top: 16px;
+        }
+
+        /* Capabilities Section */
+        .capabilities-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .capability-group {
+            margin-bottom: 45px;
+        }
+
+        .capability-group:last-child {
+            margin-bottom: 0;
+        }
+
+        .capability-group h3 {
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 18px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .capability-list {
+            list-style: none;
+        }
+
+        .capability-list li {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 20px;
+
+            font-size: 15px;
+            color: var(--text-light);
+            line-height: 1.7;
+        }
+
+        .capability-list li:before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: bold;
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .project-card {
+            padding: 30px;
+            background: #1a1a1a;
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+
+        .project-card:hover {
+            border-color: var(--accent);
+            box-shadow: 0 5px 15px rgba(168, 85, 247, 0.1);
+        }
+
+        .project-card h3 {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 12px;
+        }
+
+        .project-card p {
+            font-size: 14px;
+            color: var(--text-light);
+            line-height: 1.7;
+        }
+
+        /* Skills Section */
+        .skills-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .skill-category {
+            margin-bottom: 50px;
+        }
+
+        .skill-category h3 {
+            font-size: 16px;
+            margin-bottom: 20px;
+            color: var(--text);
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .skill-tag {
+            background: #1a1a1a;
+            padding: 8px 18px;
+            border: 1px solid var(--border);
+            border-radius: 2px;
+            font-size: 13px;
+            color: var(--text);
+            transition: all 0.3s;
+        }
+
+        .skill-tag:hover {
+            background: var(--accent);
+            color: white;
+            border-color: var(--accent);
+        }
+
+        /* Education Section */
+        .education-item {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .education-school {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 8px;
+        }
+
+        .education-degree {
+            font-size: 15px;
+            color: var(--text-light);
+            margin-bottom: 15px;
+        }
+
+        .education-certs {
+            font-size: 14px;
+            color: var(--text-light);
+            line-height: 1.8;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border);
+        }
+
+        /* Contact Section */
+        #contact {
+            background: var(--dark);
+            color: white;
+            text-align: center;
+        }
+
+        #contact h2 {
+            color: var(--text);
+        }
+
+        .contact-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-content p {
+            font-size: 16px;
+            margin-bottom: 40px;
+            color: #ccc;
+            line-height: 1.8;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--darker);
+            color: #999;
+            padding: 50px 60px;
+            text-align: center;
+            font-size: 13px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav {
+                padding: 20px 30px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero {
+                padding: 100px 30px 60px;
+                margin-top: 60px;
+            }
+
+            .hero h1 {
+                font-size: 40px;
+            }
+
+            section {
+                padding: 60px 30px;
+            }
+
+            section h2 {
+                font-size: 32px;
+            }
+
+            .profile-image {
+                width: 180px;
+                height: 180px;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+
+            .contact-info {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="logo"><strong>Aengus</strong> White</div>
+        <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#capabilities">What I Can Do</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <img src="aengusProfPic.PNG" alt="Aengus White" class="profile-image">
+        <h1><strong>Aengus</strong> White</h1>
+        <p class="subtitle">Data Engineer & Applied ML Engineer</p>
+        <p class="location">Milwaukee, WI</p>
+        <p class="description">I work across applied machine learning, data engineering, analytics applications, and systems administration — building and deploying production models, designing the data models and pipelines behind reporting and analytics, developing internal tools, and keeping the environments my team depends on running.</p>
+        <div class="contact-info">
+            <a href="mailto:aenguswhite@gmail.com">aenguswhite@gmail.com</a>
+        </div>
+        <div class="cta-buttons">
+            <a href="#contact" class="btn btn-primary">Get In Touch</a>
+            <a href="#experience" class="btn btn-secondary">View Experience</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="alternate">
+        <span class="section-subtitle">Summary</span>
+        <h2>Professional <strong>Overview</strong></h2>
+        <div class="section-divider"></div>
+        <p class="summary-text">My work covers four areas. I develop machine learning models and own their deployment, CI/CD, and maintenance in production. I do traditional data engineering — designing data models and building the pipelines behind reporting, analytical tooling, usage tracking, and ad hoc analysis. I build internal web applications and sales tools, including products that consolidate multiple external data sources into a single interface. And I administer the software and computing environments the analytics team depends on, serving as the escalation point for infrastructure problems and leading recovery when critical systems fail.</p>
+    </section>
+
+    <!-- Capabilities Section -->
+    <section id="capabilities">
+        <span class="section-subtitle">Capabilities</span>
+        <h2>What I Can <strong>Do</strong></h2>
+        <div class="section-divider"></div>
+        <div class="capabilities-container">
+
+            <div class="capability-group">
+                <h3>AI &amp; Machine Learning</h3>
+                <ul class="capability-list">
+                    <li>Develop machine learning models and take them from prototype to production systems serving live requests.</li>
+                    <li>Integrate a model directly into an existing platform, such as an applicant tracking system, without disrupting the people using it.</li>
+                    <li>Build CI/CD pipelines that handle scheduled retraining, versioned deployment, and rollback.</li>
+                    <li>Monitor model performance in production and iterate on features and architecture over time.</li>
+                    <li>Apply large language models to document analysis and automated report generation.</li>
+                </ul>
+            </div>
+
+            <div class="capability-group">
+                <h3>Data Engineering</h3>
+                <ul class="capability-list">
+                    <li>Design data models that support reporting, analytics, and downstream applications.</li>
+                    <li>Build and maintain pipelines that turn raw, inconsistent source data into reliable, structured data.</li>
+                    <li>Stand up the reporting infrastructure and usage tracking behind analytical tooling.</li>
+                    <li>Build pipelines that survive structural change upstream rather than breaking when a hierarchy shifts.</li>
+                    <li>Perform ad hoc analysis and communicate findings to technical and non-technical audiences.</li>
+                </ul>
+            </div>
+
+            <div class="capability-group">
+                <h3>Analytics Applications &amp; Tools</h3>
+                <ul class="capability-list">
+                    <li>Build internal web applications end to end — Python backends, SQL and Snowflake queries, and the front ends that consume them.</li>
+                    <li>Develop sales-facing tools that turn analysis into client-ready deliverables.</li>
+                    <li>Consolidate several unrelated external APIs into a single product.</li>
+                    <li>Replace manual, spreadsheet-driven processes with applications people can actually use.</li>
+                </ul>
+            </div>
+
+            <div class="capability-group">
+                <h3>Administration &amp; Incident Response</h3>
+                <ul class="capability-list">
+                    <li>Administer the software and computing environments an analytics team depends on.</li>
+                    <li>Serve as the escalation point for infrastructure problems other teams cannot resolve.</li>
+                    <li>Lead disaster response and recovery when critical systems fail.</li>
+                    <li>Manage database access, schemas, and views across enterprise systems.</li>
+                </ul>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="alternate">
+        <span class="section-subtitle">Selected Work</span>
+        <h2><strong>Projects</strong></h2>
+        <div class="section-divider"></div>
+        <div class="projects-grid">
+            <div class="project-card">
+                <h3>Production Ensemble ATS Recommendation Engine</h3>
+                <p>An ensemble machine learning model that ranks and prioritizes recruiter job orders, deployed as a REST API integrated directly into the applicant tracking system. Includes automated feature engineering and scheduled retraining.</p>
+            </div>
+            <div class="project-card">
+                <h3>Finance P&L Automation Platform</h3>
+                <p>An end-to-end pipeline that ingests General Ledger data using Informatica (IICS), SQL, and Python, then automates transformation, validation, and P&L reporting in Power BI. Built to handle changes in account and location hierarchies without breaking downstream reports.</p>
+            </div>
+            <div class="project-card">
+                <h3>SEC Filing Analysis Assistant</h3>
+                <p>An Azure OpenAI–powered tool that analyzes SEC filings and aggregates data from multiple sources to generate client intelligence reports. Findings are delivered as automatically generated presentation decks for client-facing teams.</p>
+            </div>
+            <div class="project-card">
+                <h3>Labor Market Intelligence Platform</h3>
+                <p>A platform that consolidates Lightcast, Dun & Bradstreet, SEC EDGAR, and U.S. Bureau of Labor Statistics APIs into a single product supporting labor market analysis. Findings are delivered through the same automated presentation tool used for client reporting.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience">
+        <span class="section-subtitle">Career</span>
+        <h2>Professional <strong>Experience</strong></h2>
+        <div class="section-divider"></div>
+
+        <details class="experience-item" open>
+            <summary class="experience-pill">
+                <div class="experience-pill-main">
+                    <span class="experience-title">Data Engineer</span>
+                    <span class="experience-year">2025 – Present</span>
+                </div>
+                <span class="experience-caret">&#9662;</span>
+            </summary>
+            <div class="experience-details">
+                <div class="experience-company">ManpowerGroup</div>
+                <p>My work spans four areas: applied machine learning, data engineering, analytics applications, and systems administration. On the machine learning side, I own a production ensemble model integrated into our applicant tracking system — the model itself, the REST API that serves it, the CI/CD pipeline that retrains and redeploys it, and its ongoing monitoring and maintenance.</p>
+                <p>As a data engineer, I design data models and build the pipelines behind reporting, analytical tooling, usage tracking, and ad hoc analysis, including the General Ledger ingestion pipeline that automates P&L reporting. I also build internal web applications and sales tools — Python backends, SQL and Snowflake, Azure OpenAI, and the front ends that sit on top — including a platform that consolidates several external data APIs into a single product. Alongside all of this, I administer the analytics team's software and computing environments, act as the escalation point for infrastructure problems other teams cannot resolve, and lead recovery when critical systems fail.</p>
+
+                <details class="specifics-toggle">
+                    <summary>the specifics <span class="specifics-caret">&#9662;</span></summary>
+
+                    <div class="experience-subhead">AI &amp; Machine Learning</div>
+                    <ul class="experience-bullets">
+                        <li>Own the architecture, reliability, and evolution of production machine learning systems embedded in recruiter-facing workflows</li>
+                        <li>Lead the end-to-end design, deployment, and lifecycle management of an ensemble machine learning model integrated into the ATS</li>
+                        <li>Architect REST-based model services using FastAPI, including request validation, feature enrichment, scoring logic, and response contracts for downstream applications</li>
+                        <li>Design and maintain automated pipelines for feature generation, integrating ATS events with lookup tables and external enterprise sources</li>
+                        <li>Implement CI/CD in Azure DevOps for weekly model retraining, versioned deployments, environment promotion, and rollback</li>
+                        <li>Monitor and iterate on model performance, introducing new features and models while maintaining backward compatibility</li>
+                    </ul>
+
+                    <div class="experience-subhead">Data Engineering</div>
+                    <ul class="experience-bullets">
+                        <li>Design data models supporting reporting, analytics, and downstream applications</li>
+                        <li>Build and maintain the pipelines behind reporting, analytical tooling, usage tracking, and ad hoc analysis</li>
+                        <li>Designed and delivered an end-to-end financial data pipeline enabling finance teams to ingest General Ledger (GL) data and automatically generate P&L reporting</li>
+                        <li>Built a REST API–driven ingestion pipeline using Informatica (IICS), SQL, and Python to pull GL data directly from source systems and centralize it for downstream reporting</li>
+                        <li>Automated transformation, validation, and aggregation logic to produce finance-ready data, eliminating manual and spreadsheet-driven processing</li>
+                        <li>Designed the pipeline to automatically refresh both transactional GL data and evolving metadata (account hierarchy, location hierarchy), so downstream reporting survives structural changes</li>
+                        <li>Delivered curated outputs to Power BI, enabling repeatable, self-service P&L reporting backed by dynamically updating hierarchies</li>
+                        <li>Reduced dependency on legacy tools and cut licensing costs by replacing manual and third-party processes with automated pipelines</li>
+                        <li>Translate reporting and accounting requirements into reliable, auditable pipelines</li>
+                    </ul>
+
+                    <div class="experience-subhead">Analytics Applications &amp; Tools</div>
+                    <ul class="experience-bullets">
+                        <li>Build internal applications combining FastAPI backends, HTML/JavaScript front ends, Azure OpenAI, SQL, and Snowflake to automate recruiter, sales, and finance workflows</li>
+                        <li>Built a platform consolidating Lightcast, Dun &amp; Bradstreet, SEC EDGAR, and U.S. Bureau of Labor Statistics APIs into a single product</li>
+                        <li>Develop sales-facing tools that turn analysis into client-ready deliverables</li>
+                        <li>Use Cursor and other AI-assisted development tools to accelerate testing, debugging, and prototyping</li>
+                    </ul>
+
+                    <div class="experience-subhead">Administration &amp; Incident Response</div>
+                    <ul class="experience-bullets">
+                        <li>Administer the software and computing environments used by the analytics team</li>
+                        <li>Serve as the escalation point for infrastructure issues and problems other teams are unable to resolve</li>
+                        <li>Lead disaster response and recovery when critical systems fail</li>
+                        <li>Manage database access, schemas, and views across enterprise systems</li>
+                    </ul>
+                </details>
+            </div>
+        </details>
+
+        <details class="experience-item">
+            <summary class="experience-pill">
+                <div class="experience-pill-main">
+                    <span class="experience-title">Associate Data Analyst</span>
+                    <span class="experience-year">2022 – 2025</span>
+                </div>
+                <span class="experience-caret">&#9662;</span>
+            </summary>
+            <div class="experience-details">
+                <div class="experience-company">ManpowerGroup</div>
+                <p>In this role, I built and maintained the machine learning models used to rank and prioritize recruiter job orders, and deployed them through Flask and FastAPI applications on Azure App Services. I also developed data ingestion and enrichment pipelines, supported Azure OpenAI integrations across internal tools, and produced analytical and ROI reporting for technical and non-technical stakeholders.</p>
+
+                <details class="specifics-toggle">
+                    <summary>the specifics <span class="specifics-caret">&#9662;</span></summary>
+
+                    <ul class="experience-bullets">
+                        <li>Built and maintained machine learning models used to rank and prioritize recruiter job orders</li>
+                        <li>Prepared and validated training data by combining ATS data with internal lookup tables and derived features</li>
+                        <li>Deployed models via Flask and FastAPI web applications hosted on Azure App Services</li>
+                        <li>Created data ingestion and enrichment pipelines using Python, Alteryx, IICS, and REST APIs</li>
+                        <li>Supported Azure OpenAI integrations within internal tools and applications</li>
+                        <li>Developed prototype applications to generate AI-assisted PowerPoint deliverables for sales teams</li>
+                        <li>Queried cloud and enterprise systems (Oracle EPM, Azure Application Insights, SQL MI) and visualized outputs in Power BI and Tableau</li>
+                        <li>Produced ad-hoc analytical and ROI reports and communicated findings to technical and non-technical stakeholders</li>
+                        <li>Administered SQL MI access and managed schemas and views using SSMS and PyODBC</li>
+                    </ul>
+                </details>
+            </div>
+        </details>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="alternate">
+        <span class="section-subtitle">Expertise</span>
+        <h2>Technical <strong>Skills</strong></h2>
+        <div class="section-divider"></div>
+
+        <div class="skills-container">
+            <div class="skill-category">
+                <h3>Languages & Core</h3>
+                <div class="skill-tags">
+                    <span class="skill-tag">Python</span>
+                    <span class="skill-tag">SQL</span>
+                    <span class="skill-tag">R</span>
+                </div>
+            </div>
+            <div class="skill-category">
+                <h3>Platforms & Tools</h3>
+                <div class="skill-tags">
+                    <span class="skill-tag">Azure (ML Studio, App Services, DevOps)</span>
+                    <span class="skill-tag">Informatica (IICS)</span>
+                    <span class="skill-tag">Alteryx</span>
+                    <span class="skill-tag">Docker</span>
+                    <span class="skill-tag">Git</span>
+                    <span class="skill-tag">Postman</span>
+                    <span class="skill-tag">Cursor</span>
+                    <span class="skill-tag">Copilot</span>
+                    <span class="skill-tag">ChatGPT</span>
+                    <span class="skill-tag">AI/LLMs</span>
+                </div>
+            </div>
+            <div class="skill-category">
+                <h3>Data & Databases</h3>
+                <div class="skill-tags">
+                    <span class="skill-tag">Snowflake</span>
+                    <span class="skill-tag">SQL MI</span>
+                    <span class="skill-tag">SSMS</span>
+                    <span class="skill-tag">PyODBC</span>
+                    <span class="skill-tag">Oracle EPM</span>
+                </div>
+            </div>
+            <div class="skill-category">
+                <h3>Analytics & Visualization</h3>
+                <div class="skill-tags">
+                    <span class="skill-tag">Power BI</span>
+                    <span class="skill-tag">Tableau</span>
+                    <span class="skill-tag">Azure Application Insights</span>
+                </div>
+            </div>
+            <div class="skill-category">
+                <h3>ML & Data Libraries</h3>
+                <div class="skill-tags">
+                    <span class="skill-tag">Pandas</span>
+                    <span class="skill-tag">NumPy</span>
+                    <span class="skill-tag">scikit-learn</span>
+                    <span class="skill-tag">Matplotlib</span>
+                    <span class="skill-tag">Flask</span>
+                    <span class="skill-tag">FastAPI</span>
+                    <span class="skill-tag">uvicorn</span>
+                    <span class="skill-tag">Requests</span>
+                    <span class="skill-tag">joblib</span>
+                    <span class="skill-tag">OpenAI</span>
+                    <span class="skill-tag">Snowflake Connector</span>
+                    <span class="skill-tag">tidyverse</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education" class="alternate">
+        <span class="section-subtitle">Credentials</span>
+        <h2>Education & <strong>Certifications</strong></h2>
+        <div class="section-divider"></div>
+
+        <div class="education-item">
+            <div class="education-school">Saint Olaf College</div>
+            <div class="education-degree">Bachelor of Arts in Mathematics, Statistics, and Data Science</div>
+            <div class="education-certs">
+                <strong>Certifications:</strong><br>
+                Microsoft Power BI Data Analyst (PL-300) | Codecademy: Data Scientist, Machine Learning, Python, Intermediate SQL
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <span class="section-subtitle" style="color: var(--accent);">Get In Touch</span>
+        <h2>Let's <strong>Connect</strong></h2>
+        <div class="section-divider" style="margin-left: auto; margin-right: auto;"></div>
+
+        <div class="contact-content">
+            <div class="cta-buttons">
+                <a href="mailto:aenguswhite@gmail.com" class="btn btn-primary">Email Me</a>
+                <a href="aengusResume.docx" download class="btn btn-secondary">Download Resume</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Aengus White. All rights reserved. | Data Engineer | Applied ML Engineer | Milwaukee, WI</p>
+    </footer>
+</body>
+</html>

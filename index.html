@@ -1,0 +1,1875 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>some things.</title>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z97KHHB83S"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-Z97KHHB83S');
+  </script>
+
+  <style>
+    :root {
+      --purple: #24103f;
+      --deep-purple: #150a25;
+      --white: #f4eff7;
+      --muted: #b8aabe;
+      --acid: #d8ff45;
+      --red: #ff5964;
+      --gold: #c6a45c;
+      --green: #53624e;
+      --black: #0b090d;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background: var(--purple);
+      color: var(--white);
+    }
+
+    body {
+      font-family: Georgia, "Times New Roman", serif;
+    }
+
+    /* =========================================================
+       PRESENTATION
+       ========================================================= */
+
+    .deck {
+      display: flex;
+      width: 100vw;
+      height: 100vh;
+
+      overflow-x: auto;
+      overflow-y: hidden;
+
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+
+      scrollbar-width: none;
+    }
+
+    .deck::-webkit-scrollbar {
+      display: none;
+    }
+
+    .slide {
+      position: relative;
+
+      flex: 0 0 100vw;
+      width: 100vw;
+      height: 100vh;
+
+      padding: 7vh 7vw;
+
+      overflow: hidden;
+      scroll-snap-align: start;
+    }
+
+    /* =========================================================
+       FLOATING NAV
+       ========================================================= */
+
+    .nav {
+      position: fixed;
+      z-index: 100;
+
+      top: 22px;
+      right: 22px;
+      left: auto;
+
+      display: flex;
+
+      background: rgba(10, 7, 14, 0.55);
+      border: 1px solid rgba(255,255,255,.3);
+
+      backdrop-filter: blur(8px);
+
+      box-shadow: 8px 8px 0 rgba(0,0,0,.18);
+    }
+
+    .nav a {
+      position: relative;
+
+      color: var(--white);
+      text-decoration: none;
+
+      padding: 10px 13px;
+
+      border-right: 1px solid rgba(255,255,255,.2);
+
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+
+      white-space: nowrap;
+
+      overflow: hidden;
+    }
+
+    .nav a:last-child {
+      border-right: none;
+    }
+
+    .nav a:hover {
+      color: var(--black);
+      background: var(--acid);
+    }
+
+    /* =========================================================
+       SLIDE 0 — THE FORK
+       ========================================================= */
+
+    #opening {
+      background: var(--purple);
+
+      display: grid;
+      grid-template-columns: 1.15fr .85fr;
+      align-items: center;
+
+      gap: 5vw;
+    }
+
+    .eyebrow {
+      position: absolute;
+      top: 8vh;
+      left: 7vw;
+
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 11px;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+
+      color: var(--muted);
+    }
+
+    .opening-title {
+      margin: 0;
+
+      font-size: clamp(5rem, 11vw, 12rem);
+      line-height: .76;
+      font-weight: 400;
+      letter-spacing: -.07em;
+    }
+
+    .opening-title em {
+      color: var(--acid);
+      font-style: normal;
+    }
+
+    .fork {
+      display: flex;
+      flex-direction: column;
+
+      gap: 20px;
+      margin-top: 48px;
+    }
+
+    .fork a,
+    .fake-link {
+      width: fit-content;
+
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: clamp(1.5rem, 2.8vw, 3rem);
+      font-weight: 800;
+      line-height: .9;
+      letter-spacing: -.06em;
+
+      color: var(--white);
+    }
+
+    .fork a {
+      text-decoration: none;
+      border-bottom: 2px solid var(--white);
+    }
+
+    .fork a:hover {
+      color: var(--acid);
+      border-color: var(--acid);
+    }
+
+    .fake-link {
+      color: #d7cedb;
+      border-bottom: 2px solid var(--red);
+      cursor: default;
+    }
+
+    .fake-link small {
+      display: block;
+
+      margin-top: 8px;
+
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: 0;
+
+      color: var(--muted);
+    }
+
+    .opening-copy {
+      max-width: 430px;
+
+      align-self: end;
+      padding-bottom: 5vh;
+
+      font-size: clamp(1.2rem, 2vw, 2rem);
+      line-height: 1.1;
+    }
+
+    .opening-number {
+      position: absolute;
+
+      right: 6vw;
+      bottom: 4vh;
+
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: clamp(3rem, 7vw, 7rem);
+      font-weight: 900;
+
+      line-height: .8;
+      letter-spacing: -.12em;
+
+      color: var(--green);
+
+      user-select: none;
+    }
+
+    .next-arrow {
+      position: absolute;
+
+      right: 7vw;
+      bottom: 6vh;
+
+      color: var(--white);
+      text-decoration: none;
+
+      font-family: Georgia, serif;
+      font-size: 5rem;
+      line-height: .7;
+
+      animation: drift 2.4s ease-in-out infinite;
+    }
+
+    @keyframes drift {
+      0%, 100% {
+        transform: translateX(0);
+        opacity: .55;
+      }
+
+      50% {
+        transform: translateX(14px);
+        opacity: 1;
+      }
+    }
+
+    /* =========================================================
+       PROFESSIONAL
+       ========================================================= */
+
+    #professional {
+      background: #111;
+      display: grid;
+      place-items: center;
+    }
+
+    .professional-inner {
+      max-width: 750px;
+    }
+
+    .professional-label {
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 12px;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: #999;
+    }
+
+    .professional-inner h2 {
+      margin: 20px 0;
+
+      font-size: clamp(4rem, 9vw, 9rem);
+      line-height: .78;
+      font-weight: 400;
+    }
+
+    .professional-inner p {
+      max-width: 42ch;
+
+      font-size: 1.3rem;
+      line-height: 1.2;
+    }
+
+    .professional-inner a {
+      color: white;
+    }
+
+    .professional-actions {
+      position: absolute;
+
+      right: 7vw;
+      top: 50%;
+
+      transform: translateY(-50%);
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      gap: 22px;
+    }
+
+    .resume-btn {
+      writing-mode: vertical-rl;
+      transform: rotate(180deg);
+
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+
+      min-height: 260px;
+      padding: 30px 16px;
+
+      background: var(--acid);
+      border: 2px solid var(--white);
+
+      color: var(--black);
+
+      font-family: Arial, Helvetica, sans-serif;
+      font-weight: 800;
+      font-size: 1.2rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      text-decoration: none;
+
+      transition: background .2s ease, color .2s ease, border-color .2s ease;
+    }
+
+    .resume-btn:hover {
+      background: var(--red);
+      border-color: var(--red);
+      color: var(--white);
+    }
+
+    .linkedin-btn {
+      padding: 10px 24px;
+
+      border: 2px solid var(--acid);
+
+      color: var(--acid);
+      background: transparent;
+
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      text-decoration: none;
+
+      transition: background .2s ease, color .2s ease;
+    }
+
+    .linkedin-btn:hover {
+      background: var(--acid);
+      color: var(--black);
+    }
+
+    .old-site-btn {
+      position: absolute;
+
+      left: 7vw;
+      top: 50%;
+
+      transform: translateY(-50%);
+
+      width: 220px;
+      height: 220px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+
+      border: 2px solid var(--white);
+
+      color: var(--white);
+      background: transparent;
+
+      font-family: Arial, Helvetica, sans-serif;
+      font-weight: 800;
+      font-size: 1.1rem;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      text-decoration: none;
+
+      transition: background .2s ease, color .2s ease, border-color .2s ease;
+    }
+
+    .old-site-btn:hover {
+      background: var(--white);
+      color: var(--black);
+    }
+
+    /* =========================================================
+       SLIDE 1 — THE BROTHERS THREE
+       ========================================================= */
+
+    #cluster {
+      background:
+        linear-gradient(
+          135deg,
+          transparent 0 73%,
+          rgba(198,164,92,.12) 73% 74%,
+          transparent 74%
+        ),
+        var(--deep-purple);
+    }
+
+    .cluster-title,
+    .projects-title,
+    .forgotten-title {
+      margin: 0;
+
+      font-size: clamp(4.5rem, 10vw, 10rem);
+      line-height: .76;
+      font-weight: 400;
+      letter-spacing: -.07em;
+    }
+
+    .cluster-intro {
+      position: absolute;
+
+      top: 25vh;
+      left: 7vw;
+
+      max-width: 310px;
+
+      color: var(--muted);
+
+      font-size: 1.15rem;
+      line-height: 1.15;
+    }
+
+    .cluster-more {
+      position: absolute;
+
+      left: 7vw;
+      bottom: 7vh;
+
+      max-width: 300px;
+
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 10px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    .cluster-more summary {
+      cursor: pointer;
+      color: var(--acid);
+      list-style: none;
+    }
+
+    .cluster-more summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .cluster-more summary::before {
+      content: "[ ";
+    }
+
+    .cluster-more summary::after {
+      content: " ]";
+    }
+
+    .cluster-more p {
+      margin: 12px 0 0;
+
+      max-width: 280px;
+
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: .95rem;
+      line-height: 1.15;
+      letter-spacing: 0;
+      text-transform: none;
+
+      color: var(--muted);
+    }
+
+    .previous-iteration {
+      position: absolute;
+
+      left: 7vw;
+      bottom: 3vh;
+
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 9px;
+
+      color: rgba(255,255,255,.35);
+    }
+
+    .previous-iteration a {
+      color: inherit;
+    }
+
+    .machines {
+      position: absolute;
+
+      left: 37vw;
+      right: 7vw;
+      top: 25vh;
+      bottom: 6vh;
+
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+
+      gap: 12px;
+
+      align-items: end;
+    }
+
+    .machine {
+      min-height: 42vh;
+
+      padding: 20px;
+
+      border: 1px solid rgba(255,255,255,.3);
+      background: rgba(0,0,0,.13);
+
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+
+      cursor: pointer;
+
+      transition:
+        background .2s ease,
+        border-color .2s ease,
+        transform .2s ease;
+    }
+
+    .machine:hover {
+      background: rgba(255,255,255,.05);
+      border-color: var(--acid);
+    }
+
+    .machine:nth-child(2) {
+      min-height: 54vh;
+      transform: translateY(-5vh);
+    }
+
+    .machine:nth-child(2):hover {
+      transform: translateY(-5vh) scale(1.01);
+    }
+
+    .machine:nth-child(3) {
+      min-height: 34vh;
+      transform: translateY(2vh);
+    }
+
+    .machine:nth-child(3):hover {
+      transform: translateY(2vh) scale(1.01);
+    }
+
+    .machine h3 {
+      margin: 0;
+
+      font-size: clamp(1.7rem, 3vw, 3.2rem);
+      line-height: .9;
+      font-weight: 400;
+    }
+
+    .machine p {
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 13px;
+      line-height: 1.4;
+
+      color: var(--muted);
+    }
+
+    .machine-number {
+      height: 125px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border: 1px solid rgba(255,255,255,.2);
+
+      font-family: Arial, Helvetica, sans-serif;
+      font-weight: 900;
+      font-size: clamp(2.4rem, 5vw, 4rem);
+      letter-spacing: -.04em;
+
+      user-select: none;
+    }
+
+    .machine:nth-child(1) .machine-number {
+      color: var(--white);
+      -webkit-text-stroke: 1.5px var(--muted);
+
+      background: rgba(244,239,247,.05);
+      border-color: rgba(244,239,247,.25);
+    }
+
+    .machine:nth-child(2) .machine-number {
+      color: var(--acid);
+      -webkit-text-stroke: 1.5px var(--purple);
+
+      background: rgba(216,255,69,.06);
+      border-color: rgba(216,255,69,.3);
+    }
+
+    .machine:nth-child(3) .machine-number {
+      color: var(--red);
+      -webkit-text-stroke: 1.5px var(--gold);
+
+      background: rgba(255,89,100,.06);
+      border-color: rgba(255,89,100,.3);
+    }
+
+    .machine-details {
+      display: none;
+
+      margin-top: 12px;
+      padding-top: 10px;
+
+      border-top: 1px solid rgba(255,255,255,.2);
+
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 11px;
+      line-height: 1.35;
+
+      color: var(--white);
+    }
+
+    .machine.active .machine-details {
+      display: block;
+    }
+
+    .machine-details strong {
+      color: var(--acid);
+      font-weight: 700;
+    }
+
+    /* =========================================================
+       SLIDE 2 — PROJECTS
+       ========================================================= */
+
+    #projects {
+      background: var(--deep-purple);
+    }
+
+    .project-grid {
+      margin-top: 9vh;
+
+      display: grid;
+      grid-template-columns: 1.1fr .9fr 1fr;
+
+      gap: 16px;
+    }
+
+    .project {
+      position: relative;
+
+      min-height: 48vh;
+
+      padding: 22px;
+
+      border: 1px solid var(--acid);
+
+      background: transparent;
+
+      display: block;
+      color: inherit;
+      text-decoration: none;
+
+      transition: border-color .2s ease;
+    }
+
+    .project:hover {
+      border-color: var(--red);
+    }
+
+    .project:nth-child(2) {
+      transform: translateY(5vh);
+    }
+
+    .project:nth-child(3) {
+      transform: translateY(-2vh);
+    }
+
+    .project img {
+      width: 100%;
+      height: 145px;
+
+      margin-bottom: 22px;
+
+      object-fit: cover;
+      opacity: .55;
+      mix-blend-mode: luminosity;
+    }
+
+    .project h3 {
+      margin: 0 0 10px;
+
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 2rem;
+      line-height: .9;
+      font-weight: 800;
+      letter-spacing: -.06em;
+    }
+
+    .project p {
+      max-width: 35ch;
+
+      font-size: 1.05rem;
+      line-height: 1.2;
+    }
+
+    .status {
+      position: absolute;
+
+      right: 14px;
+      bottom: 14px;
+
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 10px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    .project-ref-link {
+      display: block;
+
+      margin-top: 8px;
+
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 9px;
+      letter-spacing: .04em;
+
+      color: rgba(255,255,255,.35);
+    }
+
+    .project-ref-link:hover {
+      color: var(--acid);
+    }
+
+    /* =========================================================
+       SLIDE 3 — ART
+       ========================================================= */
+
+    #art {
+      padding: 0;
+      background: #151019;
+    }
+
+    .art-title {
+      position: absolute;
+      z-index: 5;
+
+      left: 6vw;
+      top: 7vh;
+
+      font-size: clamp(4rem, 10vw, 11rem);
+      line-height: .75;
+      font-weight: 400;
+
+      mix-blend-mode: screen;
+    }
+
+    .art-title small {
+      display: block;
+
+      margin-top: 25px;
+
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 11px;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+
+      color: var(--acid);
+    }
+
+    .gallery {
+      width: 100%;
+      height: 100%;
+
+      display: grid;
+
+      grid-template-columns: 1fr 1fr .9fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      grid-template-areas:
+        "a a b c"
+        "d e e c";
+
+      gap: 5px;
+    }
+
+    /*
+      Each slot is a frame with two layers: a blurred,
+      zoomed-up copy of the same image filling the whole
+      cell (so there's never a flat empty gap), and the
+      real image on top at object-fit: contain where the
+      full piece needs to stay uncropped.
+    */
+
+    .art-frame {
+      position: relative;
+
+      width: 100%;
+      height: 100%;
+
+      overflow: hidden;
+
+      transition: opacity .5s ease;
+    }
+
+    .art-frame-bg {
+      position: absolute;
+      inset: -20px;
+
+      background-size: cover;
+      background-position: center;
+
+      filter: blur(28px) brightness(.5) saturate(.9);
+      transform: scale(1.1);
+    }
+
+    .art-frame img {
+      position: relative;
+      z-index: 1;
+
+      width: 100%;
+      height: 100%;
+
+      object-fit: cover;
+
+      filter: saturate(.85);
+    }
+
+    .art-frame:nth-child(1) {
+      grid-area: a;
+    }
+
+    .art-frame:nth-child(1) img {
+      object-fit: contain;
+    }
+
+    .art-frame:nth-child(2) {
+      grid-area: c;
+    }
+
+    .art-frame:nth-child(3) {
+      grid-area: b;
+    }
+
+    .art-frame:nth-child(4) {
+      grid-area: e;
+    }
+
+    .art-frame:nth-child(5) {
+      grid-area: d;
+    }
+
+    /* ---------------------------------------------------------
+       "zoom call" layout — kicks in a few seconds after the
+       collage above, then rotates who's the main speaker.
+       --------------------------------------------------------- */
+
+    .gallery.zoom-mode {
+      grid-template-columns: 15% 70% 15%;
+      grid-template-rows: 1fr 1fr;
+      grid-template-areas:
+        "l1 m r1"
+        "l2 m r2";
+    }
+
+    .gallery.zoom-mode .art-frame img {
+      object-fit: cover;
+    }
+
+    .gallery.zoom-mode .art-frame.role-m {
+      grid-area: m;
+    }
+
+    .gallery.zoom-mode .art-frame.role-m img {
+      object-fit: contain;
+    }
+
+    .gallery.zoom-mode .art-frame.role-l1 {
+      grid-area: l1;
+    }
+
+    .gallery.zoom-mode .art-frame.role-l2 {
+      grid-area: l2;
+    }
+
+    .gallery.zoom-mode .art-frame.role-r1 {
+      grid-area: r1;
+    }
+
+    .gallery.zoom-mode .art-frame.role-r2 {
+      grid-area: r2;
+    }
+
+    /* =========================================================
+       SLIDE 4 — FORGOTTEN FRIENDS
+       ========================================================= */
+
+    #forgotten {
+      background:
+        linear-gradient(
+          -135deg,
+          transparent 0 78%,
+          rgba(255,89,100,.22) 78% 79%,
+          transparent 79%
+        ),
+        linear-gradient(
+          rgba(19,11,26,.9),
+          rgba(19,11,26,.9)
+        ),
+        url("carry_that_weight.jpeg") center / cover no-repeat;
+    }
+
+    .forgotten-title {
+      transform: rotate(-1.1deg);
+    }
+
+    .forgotten-intro {
+      position: absolute;
+
+      top: 45vh;
+      left: 7vw;
+
+      max-width: 400px;
+
+      transform: rotate(.6deg);
+    }
+
+    .forgotten-copy {
+      margin: 0;
+
+      color: var(--muted);
+
+      font-size: 1.15rem;
+      line-height: 1.15;
+    }
+
+    .forgotten-weight {
+      position: absolute;
+
+      left: 7vw;
+      bottom: 3vh;
+
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 9px;
+      font-style: italic;
+      letter-spacing: .06em;
+
+      color: rgba(255,255,255,.35);
+    }
+
+    .friend-list {
+      position: absolute;
+
+      right: 6vw;
+      bottom: 5vh;
+
+      width: 32vw;
+
+      display: grid;
+      grid-template-columns: 1fr;
+
+      gap: 8px;
+    }
+
+    .friend {
+      min-height: 16vh;
+
+      padding: 16px;
+
+      border: 2px solid var(--red);
+      background: rgba(0,0,0,.16);
+
+      display: block;
+      text-decoration: none;
+      color: inherit;
+
+      box-shadow: 5px 5px 0 rgba(0,0,0,.25);
+
+      transition:
+        background .2s ease,
+        border-color .2s ease,
+        transform .2s ease;
+    }
+
+    .friend:hover {
+      background: rgba(216,255,69,.06);
+      border-color: var(--acid);
+    }
+
+    .friend:nth-child(1) {
+      transform: rotate(-1.2deg) translateX(-6px);
+    }
+
+    .friend:nth-child(2) {
+      transform: rotate(.8deg) translateX(10px);
+    }
+
+    .friend:nth-child(3) {
+      transform: rotate(-.4deg) translateX(-2px);
+    }
+
+    .friend:hover {
+      transform: rotate(0deg) translateX(0) scale(1.015);
+    }
+
+    .friend h3 {
+      margin: 0 0 8px;
+
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 1.25rem;
+      line-height: 1;
+      font-weight: 800;
+    }
+
+    .friend p {
+      margin: 0;
+
+      color: rgba(255,255,255,.4);
+
+      font-size: .82rem;
+      line-height: 1.15;
+    }
+
+    /* =========================================================
+       SLIDE 5 — CONTACT
+       ========================================================= */
+
+    #contact {
+      background:
+        linear-gradient(
+          135deg,
+          transparent 0 46%,
+          rgba(216,255,69,.1) 46% 47%,
+          transparent 47% 100%
+        ),
+        linear-gradient(
+          -135deg,
+          transparent 0 46%,
+          rgba(255,89,100,.14) 46% 47%,
+          transparent 47% 100%
+        ),
+        #130b1f;
+
+      display: grid;
+      place-items: center;
+
+      text-align: center;
+    }
+
+    .contact-title {
+      margin: 0;
+
+      font-size: clamp(5rem, 14vw, 15rem);
+      line-height: .72;
+      font-weight: 400;
+      letter-spacing: -.08em;
+    }
+
+    .contact-links {
+      margin-top: 7vh;
+
+      display: flex;
+      justify-content: center;
+      gap: 22px;
+      flex-wrap: wrap;
+    }
+
+    .contact-links a {
+      color: var(--white);
+
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+
+      text-decoration: none;
+
+      border-bottom: 2px solid var(--acid);
+
+      transition: color .15s ease, border-color .15s ease;
+    }
+
+    .contact-links a:nth-child(2) {
+      border-color: var(--red);
+    }
+
+    .contact-links a:hover {
+      color: var(--red);
+      border-color: var(--red);
+    }
+
+    .contact-links a:nth-child(2):hover {
+      color: var(--acid);
+      border-color: var(--acid);
+    }
+
+    .contact-copy {
+      margin-top: 30px;
+
+      color: var(--muted);
+      font-size: 1rem;
+    }
+
+    /* =========================================================
+       SMALL SCREENS
+       ========================================================= */
+
+    @media (max-width: 850px) {
+
+      .nav {
+        left: 10px;
+        right: 10px;
+        top: 10px;
+
+        overflow-x: auto;
+      }
+
+      #opening {
+        grid-template-columns: 1fr;
+      }
+
+      .opening-copy {
+        align-self: start;
+      }
+
+      .machines {
+        left: 7vw;
+        top: 38vh;
+      }
+
+      .cluster-title {
+        font-size: 4.5rem;
+      }
+
+      .project-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .project:nth-child(3) {
+        display: none;
+      }
+
+      .forgotten-intro {
+        top: 20vh;
+        max-width: 80vw;
+      }
+
+      .friend-list {
+        top: 44vh;
+        bottom: 3vh;
+        left: 6vw;
+        right: 6vw;
+        width: auto;
+
+        overflow-y: auto;
+      }
+    }
+  </style>
+</head>
+
+
+<body>
+
+  <!--
+    Persistent navigation.
+    This is intentionally more like an object sitting on the
+    presentation than a conventional website navbar.
+  -->
+
+  <nav class="nav">
+    <a href="#opening">[start]</a>
+    <a href="#cluster">[the brothers three]</a>
+    <a href="#projects">[projects]</a>
+    <a href="#art">[art]</a>
+    <a href="#forgotten">[forgotten friends]</a>
+    <a href="#contact">[contact]</a>
+  </nav>
+
+
+  <main class="deck">
+
+
+    <!-- =======================================================
+         0 — THE FORK
+         ======================================================= -->
+
+    <section class="slide" id="opening">
+
+      <div class="eyebrow">
+        a personal presentation, apparently
+      </div>
+
+      <div>
+
+        <h1 class="opening-title">
+          some<br>
+          <em>things.</em>
+        </h1>
+
+        <div class="fork">
+
+          <a href="professional.html">
+            professional stuff <span>(boring)</span>
+          </a>
+
+          <div class="fake-link">
+            for the cool kinds
+
+            <small>
+              this doesn't do anything. keep going
+            </small>
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div class="opening-copy">
+
+        there's some stuff
+        I made this way
+
+      </div>
+
+
+      <div class="opening-number">
+        01
+      </div>
+
+
+      <a
+        class="next-arrow"
+        href="#cluster"
+        aria-label="continue"
+      >→</a>
+
+    </section>
+
+
+    <!-- =======================================================
+         PROFESSIONAL STUFF
+         ======================================================= -->
+
+    <section class="slide" id="professional">
+
+      <div class="professional-inner">
+
+        <div class="professional-label">
+          professional stuff
+        </div>
+
+        <h2>
+          unfortunately,<br>
+          yes
+        </h2>
+
+        <p>
+          I have an obligation to those who came here to
+          not share in my splendor, but advance
+          my professional machinations
+        </p>
+
+        <p>
+          <a href="#cluster">
+            back to the interesting part →
+          </a>
+        </p>
+
+      </div>
+
+
+      <a class="old-site-btn" href="professional.html">
+        the "professional" site
+      </a>
+
+
+      <div class="professional-actions">
+
+        <a class="resume-btn" href="aengusResume.docx" download>
+          download resume
+        </a>
+
+        <a
+          class="linkedin-btn"
+          href="https://www.linkedin.com/in/aengus-white/"
+          target="_blank"
+          rel="noreferrer"
+        >
+          linkedin
+        </a>
+
+      </div>
+
+    </section>
+
+
+    <!-- =======================================================
+         1 — THE BROTHERS THREE
+         ======================================================= -->
+
+    <section class="slide" id="cluster">
+
+      <h2 class="cluster-title">
+        the<br>
+        brothers<br>
+        three
+      </h2>
+
+      <p class="cluster-intro">
+        three computers of varying utility
+        possibly considered e-waste but hey
+        they were free
+      </p>
+
+
+      <details class="cluster-more">
+
+        <summary>show more</summary>
+
+        <p>
+          this cluster is a bunch of computers I had laying
+          around. I wanted to have a bit of a profesisonal development
+          moment, where I can make a 'real env' but then also give myself
+          somewhere to work. the read between the lines on this one is that
+          I wanted to make a weather station app and realized i had 3
+          computers to do it. fun project, will probs use it for other stuff
+          in the future. it's set up for spark (another thing to learn!) too,
+          and I tried to create a text parsing workflow on there but the
+          computers were so bad that it would take 2 straight weeks at max 
+          effort
+        </p>
+
+      </details>
+
+
+      <div class="previous-iteration">
+        previous iteration:
+        <a href="https://youtu.be/U8hLxqJe9yw?si=xZ4WxFpjoDM7oryU" target="_blank" rel="noreferrer">the MAGI system</a>
+      </div>
+
+
+      <div class="machines">
+
+
+        <article class="machine" onclick="toggleMachine(this)">
+
+          <div>
+            <h3>Dmitri</h3>
+
+            <p>
+              does all the app hosting and
+              ingests raw sensor data. Compute
+              node too. bought it
+              in college for R (studio server... hosted by the school...)
+            </p>
+
+            <div class="machine-details">
+              <strong>specs:</strong> 2018 Mac Mini, 8gb / 256gb / 3.4gHz 4 threads<br>
+              <strong>notes:</strong> the best in the bunch right now,
+              its a low bar
+            </div>
+          </div>
+
+          <div class="machine-number">00</div>
+
+        </article>
+
+
+        <article class="machine" onclick="toggleMachine(this)">
+
+          <div>
+            <h3>Ivan</h3>
+
+            <p>
+              orchestrates. similar utility to Dmitri. doesn't
+              use a ton of electricity, but kinda overpowered for
+              what it does. also use it as a dev env / compute node
+            </p>
+
+            <div class="machine-details">
+              <strong>specs:</strong> Lenovo T??? 16gb / 256 gb<br>
+              <strong>notes:</strong> i saved this computer from like
+              actual death. inputs didn't work. some bios issue. nice
+              enough computer, but has truly lived through hell
+            </div>
+          </div>
+
+          <div class="machine-number">01</div>
+
+        </article>
+
+
+        <article class="machine" onclick="toggleMachine(this)">
+
+          <div>
+            <h3>Alexei</h3>
+
+            <p>
+              this is a db server, but its like 100x
+              the power consumption of the other 2. old
+              as hell. on when i need it. considered
+              'warm storage'
+            </p>
+
+            <div class="machine-details">
+              <strong>specs:</strong> Dell XPS, 16gb DDR3, 2TB, 3.4gHz, 4 threads<br>
+              <strong>notes:</strong> seems really strong? but actually
+              slow as hell. spinning hdd and ddr3. thankfully it pulls like
+              20w at idle 
+            </div>
+          </div>
+
+          <div class="machine-number">02</div>
+
+        </article>
+
+
+      </div>
+
+    </section>
+
+
+    <!-- =======================================================
+         2 — PROJECTS
+         ======================================================= -->
+
+    <section class="slide" id="projects">
+
+      <h2 class="projects-title">
+        things i've<br>
+        made
+      </h2>
+
+
+      <div class="project-grid">
+
+
+        <a
+          class="project"
+          href="https://github.com/whiteguy78/pokemon-project/tree/main"
+          target="_blank"
+          rel="noreferrer"
+        >
+
+          <img
+            src="pokeapi.png"
+            alt="pokeapi"
+          >
+
+          <h3>pokedex</h3>
+
+          <p>
+            wonder what it does
+          </p>
+
+          <span class="status">
+            basically finished
+          </span>
+
+        </a>
+
+
+        <article class="project">
+
+          <img
+            src="the%20rain.png"
+            alt="the rain"
+          >
+
+          <h3>inside/outside weather app</h3>
+
+          <p>
+            this is more for me so don't worry
+            about it
+          </p>
+
+          <a
+            class="project-ref-link"
+            href="https://youtu.be/qNZPzcNU_M4?si=HmN1gLmBmUrvQjUw"
+            target="_blank"
+            rel="noreferrer"
+          >
+            not the app, but yeah
+          </a>
+
+          <span class="status">
+            chill out i have a job but it's going well
+          </span>
+
+        </article>
+
+
+        <article class="project">
+
+          <img
+            src="kanye.jpeg"
+            alt="Kanye West"
+          >
+
+          <h3>Kanye West Semantic Analysis</h3>
+
+          <p>
+            double entendra? no. it's about if 
+            embedding models can see themes and such
+          </p>
+
+          <span class="status">
+            researching source data and compute reqs
+          </span>
+
+        </article>
+
+
+      </div>
+
+    </section>
+
+
+    <!-- =======================================================
+         3 — ART INTERMISSION
+         ======================================================= -->
+
+    <section class="slide" id="art">
+
+      <div class="art-title">
+        intermission
+
+        <small>
+          some pictures
+        </small>
+      </div>
+
+
+      <div class="gallery">
+
+        <div class="art-frame">
+          <div class="art-frame-bg" style="background-image: url('mbdtf.png')"></div>
+          <img src="mbdtf.png" alt="mbdtf">
+        </div>
+
+        <div class="art-frame">
+          <div class="art-frame-bg" style="background-image: url('kimmk.png')"></div>
+          <img src="kimmk.png" alt="kimmk">
+        </div>
+
+        <div class="art-frame">
+          <div class="art-frame-bg" style="background-image: url('milk.png')"></div>
+          <img src="milk.png" alt="milk">
+        </div>
+
+        <div class="art-frame">
+          <div class="art-frame-bg" style="background-image: url('stinky.png')"></div>
+          <img src="stinky.png" alt="stinky">
+        </div>
+
+        <div class="art-frame">
+          <div class="art-frame-bg" style="background-image: url('mater.png')"></div>
+          <img src="mater.png" alt="mater">
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =======================================================
+         4 — FORGOTTEN FRIENDS
+         ======================================================= -->
+
+    <section class="slide" id="forgotten">
+
+      <h2 class="forgotten-title">
+        forgotten<br>
+        friends
+      </h2>
+
+      <div class="forgotten-intro">
+
+        <p class="forgotten-copy">
+          don't judge me for what I've finished
+          but rather the ambitions yet to be realized
+          (i am not going to finish or redo these)
+        </p>
+
+      </div>
+
+      <p class="forgotten-weight">
+        you're gonna carry that weight.
+      </p>
+
+
+      <div class="friend-list">
+
+
+        <a
+          class="friend"
+          href="https://github.com/whiteguy78/aengus-s-personal-projects/blob/main/Competitive-Pokemon-no-lotad.pdf"
+          target="_blank"
+          rel="noreferrer"
+        >
+          <h3>the pokemon analysis</h3>
+          <p>
+            kinda cool. not really my level of work anymore, but i thought 
+            it was cool. no lotad though :(
+          </p>
+        </a>
+
+
+        <a
+          class="friend"
+          href="https://github.com/whiteguy78/python-chess"
+          target="_blank"
+          rel="noreferrer"
+        >
+          <h3>python chess</h3>
+          <p>
+            grandmaster difficulty, except sometimes you switch places
+            with the grandmaster (not on purpose)
+          </p>
+        </a>
+
+
+        <a
+          class="friend"
+          href="https://github.com/whiteguy78/aengus-s-personal-projects"
+          target="_blank"
+          rel="noreferrer"
+        >
+          <h3>old bad stuff</h3>
+          <p>
+            crazy what we post to the internet in hopes
+            of getting a job
+          </p>
+        </a>
+
+
+      </div>
+
+    </section>
+
+
+    <!-- =======================================================
+         5 — CONTACT
+         ======================================================= -->
+
+    <section class="slide" id="contact">
+
+      <div>
+
+        <h2 class="contact-title">
+          you used to call me on my smell phone
+        </h2>
+
+
+        <div class="contact-links">
+
+          <a href="mailto:aenguswhite@gmail.com">
+            email (preferred)
+          </a>
+
+          <a
+            href="https://github.com/whiteguy78"
+            target="_blank"
+            rel="noreferrer"
+          >
+            github (pls dont)
+          </a>
+
+          <a
+            href="https://www.linkedin.com/in/aengus-white/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            linkedin (the abyss stares back)
+          </a>
+
+        </div>
+
+
+        <p class="contact-copy">
+          please dont follow me on instagram. i know im funny
+          and pretty but thats not a good enough reason
+        </p>
+
+      </div>
+
+    </section>
+
+
+  </main>
+
+
+  <script>
+
+    /*
+      Make the mouse wheel move through the presentation sideways.
+    */
+
+    const deck = document.querySelector(".deck");
+
+    window.addEventListener("wheel", (event) => {
+
+      if (
+        Math.abs(event.deltaY) <=
+        Math.abs(event.deltaX)
+      ) {
+        return;
+      }
+
+      event.preventDefault();
+
+      deck.scrollBy({
+        left: event.deltaY * 1.15,
+        behavior: "smooth"
+      });
+
+    }, { passive: false });
+
+
+    /*
+      Keyboard navigation.
+    */
+
+    window.addEventListener("keydown", (event) => {
+
+      if (
+        event.key === "ArrowRight" ||
+        event.key === "PageDown" ||
+        event.key === " "
+      ) {
+
+        event.preventDefault();
+
+        deck.scrollBy({
+          left: window.innerWidth,
+          behavior: "smooth"
+        });
+
+      }
+
+
+      if (
+        event.key === "ArrowLeft" ||
+        event.key === "PageUp"
+      ) {
+
+        event.preventDefault();
+
+        deck.scrollBy({
+          left: -window.innerWidth,
+          behavior: "smooth"
+        });
+
+      }
+
+    });
+
+
+    /*
+      Brothers Three interaction.
+
+      Click a brother to expose the slightly more serious
+      infrastructure notes underneath.
+    */
+
+    function toggleMachine(machine) {
+
+      document.querySelectorAll(".machine").forEach((item) => {
+
+        if (item !== machine) {
+          item.classList.remove("active");
+        }
+
+      });
+
+      machine.classList.toggle("active");
+
+    }
+
+
+    /*
+      Art gallery: collage, then zoom call.
+
+      Sits as the static collage for a few seconds, then
+      switches to a "zoom call" layout — one big main
+      speaker in the middle, four smaller cropped tiles on
+      the sides — and rotates who's speaking every few
+      seconds. Each frame keeps its own painting the whole
+      time; only which grid slot (role) it's assigned to
+      changes.
+    */
+
+    const galleryRoles = ["role-m", "role-l1", "role-l2", "role-r1", "role-r2"];
+
+    const galleryEl = document.querySelector(".gallery");
+    const galleryFrames = document.querySelectorAll(".gallery .art-frame");
+
+    if (galleryEl && galleryFrames.length === galleryRoles.length) {
+
+      let zoomOffset = 0;
+
+      const applyRoles = () => {
+        galleryFrames.forEach((frame, i) => {
+          galleryRoles.forEach((role) => frame.classList.remove(role));
+          frame.classList.add(galleryRoles[(i + zoomOffset) % galleryRoles.length]);
+        });
+      };
+
+      setTimeout(() => {
+
+        applyRoles();
+        galleryEl.classList.add("zoom-mode");
+
+        setInterval(() => {
+
+          galleryFrames.forEach((frame) => {
+            frame.style.opacity = 0;
+          });
+
+          setTimeout(() => {
+            zoomOffset = (zoomOffset + 1) % galleryRoles.length;
+            applyRoles();
+
+            galleryFrames.forEach((frame) => {
+              frame.style.opacity = 1;
+            });
+          }, 500);
+
+        }, 4000);
+
+      }, 5000);
+
+    }
+
+  </script>
+
+</body>
+</html>
