@@ -684,6 +684,29 @@
       gap: 16px;
     }
 
+    .project-item {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .project-try-link {
+      display: inline-block;
+
+      margin-bottom: 8px;
+
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 10px;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+
+      color: var(--acid);
+      text-decoration: none;
+    }
+
+    .project-try-link:hover {
+      color: var(--red);
+    }
+
     .project {
       position: relative;
 
@@ -1339,8 +1362,8 @@
 
       <h2 class="cluster-title">
         the<br>
-        brothers<br>
-        three
+        three<br>
+        computers
       </h2>
 
       <p class="cluster-intro">
@@ -1382,7 +1405,7 @@
         <article class="machine" onclick="toggleMachine(this)">
 
           <div>
-            <h3>Dmitri</h3>
+            <h3>2018 Mac Mini</h3>
 
             <p>
               does all the app hosting and
@@ -1406,10 +1429,10 @@
         <article class="machine" onclick="toggleMachine(this)">
 
           <div>
-            <h3>Ivan</h3>
+            <h3>Lenovo E waste</h3>
 
             <p>
-              orchestrates. similar utility to Dmitri. doesn't
+              orchestrates. similar utility to the mac mini. doesn't
               use a ton of electricity, but kinda overpowered for
               what it does. also use it as a dev env / compute node
             </p>
@@ -1430,7 +1453,7 @@
         <article class="machine" onclick="toggleMachine(this)">
 
           <div>
-            <h3>Alexei</h3>
+            <h3>Dell XPS but from like 2011</h3>
 
             <p>
               this is a db server, but its like 100x
@@ -1472,29 +1495,42 @@
       <div class="project-grid">
 
 
-        <a
-          class="project"
-          href="https://github.com/whiteguy78/pokemon-project/tree/main"
-          target="_blank"
-          rel="noreferrer"
-        >
+        <div class="project-item">
 
-          <img
-            src="pokeapi.png"
-            alt="pokeapi"
+          <a
+            class="project-try-link"
+            href="https://pokemon-project-w6j4.onrender.com"
+            target="_blank"
+            rel="noreferrer"
+          >
+            maybe try it out →
+          </a>
+
+          <a
+            class="project"
+            href="https://github.com/whiteguy78/pokemon-project/tree/main"
+            target="_blank"
+            rel="noreferrer"
           >
 
-          <h3>pokedex</h3>
+            <img
+              src="pokeapi.png"
+              alt="pokeapi"
+            >
 
-          <p>
-            wonder what it does
-          </p>
+            <h3>pokedex</h3>
 
-          <span class="status">
-            basically finished
-          </span>
+            <p>
+              wonder what it does
+            </p>
 
-        </a>
+            <span class="status">
+              basically finished
+            </span>
+
+          </a>
+
+        </div>
 
 
         <article class="project">
